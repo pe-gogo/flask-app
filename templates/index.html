@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>WebSite</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        transform: translateX(-10px);
+      }
+
+      20%,
+      40%,
+      60%,
+      80% {
+        transform: translateX(10px);
+      }
+    }
+
+    .shake:hover {
+      animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+      transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      perspective: 1000px;
+    }
+  </style>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/yejiao.css') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+  <div class="lg:hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50">
+    <div class="text-white text-lg px-4">
+      为获得最佳体验，请在电脑上查看此页面。
+    </div>
+  </div>
+  <div class="flex items-center p-4 bg-gray-800 text-white">
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='source/pic.jpg') }}" alt="Logo" class="h-10 mr-3" />
+    <div style="flex: 1"></div>
+
+    <!-- Menu Items -->
+    <!-- <div class="dropdown relative"> -->
+    <div class="flex space-x-4">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+    <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3 w-full" />
+
+         Home
+      </a>
+    </div>
+
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+    <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />
+
+Team
+      </a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="/detail" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/bg4.png') }}" alt="Logo" class="h-10 w-10 mr-3" />
+
+          <div>Subitem 2</div>
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3 w-10" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown relative dropdown-trigger">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Project</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Hardware</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+
+      </div>
+    </div>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-1 w-48">
+
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Parts</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />HP</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+        <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />
+        Awards</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="header-image"></div>
+
+  <div class="content-section image-left">
+    <div class="image-box">
+    <img src="{{ url_for('static', filename='source/lg.png') }}" alt="Logo" class="h-10 mr-3" />
+
+    </div>
+    <div class="text-box">
+      <h2>KDASL 1</h2>
+      <p>HADSKL</p>
+    </div>
+  </div>
+
+  <div class="content-section image-right">
+    <div class="text-box">
+      <h2>DAS 2</h2>
+      <p>KASDKSK</p>
+    </div>
+    <div class="image-box">
+      <img src="{{ url_for('static', filename='source/lg.png') }}" alt="Image Description" />
+    </div>
+  </div>
+
+  <div class="relative bg-cover bg-center p-10" style="background-image: url('public/source/pic.jpg')">
+    <video class="rounded-xl mx-auto" style="width: 80%" controls>
+      <source src="{{ url_for('static', filename='source/video.mp4') }}" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <footer>
+    <div class="footcontainer">
+      <div class="sec about-us">
+        <h2>About Us!</h2>
+        <p>
+          I am a member of the iGEM team's web design group. We are
+          responsible for creating and maintaining the team's website.
+        </p>
+        <ul class="sci">
+          <li>
+            <a href="#">
+              <i class="fa fa-qq" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-github" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-weixin" aria-hidden="true"></i>
+            </a>
+          </li>
+          <li>
+            <a href="">
+              <i class="fa fa-weibo" aria-hidden="true"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="sec quick-link">
+        <h2>Quick Links!</h2>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Team</a></li>
+          <li><a href="#">Project</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="sec contact">
+        <h2>Contact Us!</h2>
+        <ul class="info">
+          <li>
+            <span> <i class="fa fa-map-marker" aria-hidden="true"></i></span>
+            <span>
+              <a href="">AAAAAA</a>
+              <br /><br />
+              <a href="">AAABBBCCC</a>
+            </span>
+          </li>
+          <li>
+            <span> <i class="fa fa-phone" aria-hidden="true"></i></span>
+            <span>
+              <a href="">(+86)123456789</a>
+            </span>
+          </li>
+          <li>
+            <span> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+            <span>
+              <a href="">123456789igem@gmail.com</a>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  <div class="copyrighttext">
+    <p>copyright 2020 online ...</p>
+  </div>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/yejiao.css') }}">
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  <script>
+
+      const dropdown = document.querySelector('.dropdown');
+const dropdownContent = dropdown.querySelector('.dropdown-content');
+
+let timeoutId;
+
+dropdown.onmouseover = () => {
+  clearTimeout(timeoutId);
+  dropdownContent.classList.remove('hidden');
+};
+
+dropdown.onmouseout = () => {
+  timeoutId = setTimeout(() => {
+    dropdownContent.classList.add('hidden');
+  }, 500); // 500 毫秒延迟，可以根据需要调整
+};
+    //
+    // $(document).ready(function () {
+    //   $(".dropdown").hover(
+    //     function () {
+    //       $(this).find(".dropdown-content").removeClass("hidden");
+    //     },
+    //     function () {
+    //       $(this).find(".dropdown-content").addClass("hidden");
+    //     }
+    //   );
+    // });
+  </script>
+</body>
+
+</html>

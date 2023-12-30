@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detail Page</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/yejiao.css') }}">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+      integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+
+    <style>
+      @media only screen and (max-width: 600px) {
+        .desktop-only {
+          display: block;
+          background-color: yellow;
+          text-align: center;
+          padding: 1rem;
+          margin-bottom: 1rem;
+          font-size: 1rem;
+        }
+      }
+
+      /* 针对大屏幕设备，隐藏提示 */
+      .desktop-only {
+        display: none;
+      }
+      .active-sidebar-link {
+        background-color: #4a5568; /* Tailwind gray-700 */
+      }
+
+      /* Ensuring the sidebar link is clearly visible when active */
+      .sidebar-link {
+        display: block;
+        padding: 0.5rem;
+        border-radius: 0.25rem;
+        color: #999;
+        transition: background-color 0.3s;
+      }
+
+      .sidebar-link:hover {
+        background-color: #e2e8f0; /* Tailwind gray-200 */
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+
+ <div class="flex items-center p-4 bg-gray-800 text-white">
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='source/pic.jpg') }}" alt="Logo" class="h-10 mr-3" />
+    <div style="flex: 1"></div>
+
+    <!-- Menu Items -->
+    <!-- <div class="dropdown relative"> -->
+    <div class="flex space-x-4">
+      <a href="/" class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+    <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />
+
+         Home
+      </a>
+    </div>
+
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+    <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />
+
+Team
+      </a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="/detail" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+
+          <div>Subitem 2</div>
+        </a>
+
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+
+    <div class="dropdown relative dropdown-trigger">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Project</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Hardware</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />Parts</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white"><img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />HP</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+    <div class="dropdown relative">
+      <a class="flex items-center px-4 py-2 hover:bg-gray-900 rounded cursor-pointer text-white">
+        <img src="{{ url_for('static', filename='source/home2.png') }}" alt="Logo" class="h-10 mr-3" />
+        Awards</a>
+      <div class="dropdown-content absolute hidden fade-in bg-white shadow-lg rounded mt-2 w-48">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a><a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+    <img src="{{ url_for('static', filename='source/member2.png') }}" alt="Logo" class="h-10 mr-3" />
+          <div>Subitem 2</div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+    
+    <div
+      class="lg:hidden fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+    >
+      <div class="text-white text-lg px-4">
+        为获得最佳体验，请在电脑上查看此页面。
+      </div>
+    </div>
+    <div class="flex">
+      <!-- Sidebar -->
+      <div class="fixed top-0 w-1/6 h-screen bg-white p-4 shadow overflow-auto">
+        <nav>
+          <ul>
+            <li><a href="#section1" class="sidebar-link">Section 1</a></li>
+            <li><a href="#section2" class="sidebar-link">Section 2</a></li>
+            <li><a href="#section3" class="sidebar-link">Section 3</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Main Content -->
+
+      <div class="w-5/6 ml-auto p-2">
+        <div class="desktop-only">为获得最佳体验，请使用电脑观看此页面。</div>
+        <div style="border: 2px solid black; padding: 20px">
+          <section id="section1" class="mb-8">
+            <h2 class="text-xl font-bold mb-2">Section 1</h2>
+            <p>
+              Content for section 1... e for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maie for creating and maintaining the team's website. I am a
+              member of the iGEM team's web design group. We are responsible for
+              creating and maintaining the team's website. I am a member of the
+              iGEM team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and mai
+            </p>
+          </section>
+          <section id="section2" class="mb-8">
+            <h2 class="text-xl font-bold mb-2">Section 2</h2>
+            <p>
+              e for creating and maintaining the team's website. I am a member
+              of the iGEM team's web design group. We are responsible for
+              creating and maintaining the team's website. I am a member of the
+              iGEM team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maie for
+              creating and maintaining the team's website. I am a member of the
+              iGEM team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maie for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and mai Content for section 2... I am a
+              member of the iGEM team's web design group. We are responsible for
+              creating and maintaining the team's website. I am a member of the
+              iGEM team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website.
+            </p>
+          </section>
+          <section id="section3" class="mb-8">
+            <h2 class="text-xl font-bold mb-2">Section 3</h2>
+            <p>
+              Content for section 3... e for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maie for creating and maintaining the team's website. I am a
+              member of the iGEM team's web design group. We are responsible for
+              creating and maintaining the team's website. I am a member of the
+              iGEM team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and maintaining
+              the team's website. I am a member of the iGEM team's web design
+              group. We are responsible for creating and maintaining the team's
+              website. I am a member of the iGEM team's web design group. We are
+              responsible for creating and maintaining the team's website. I am
+              a member of the iGEM team's web design group. We are responsible
+              for creating and maintaining the team's website. I am a member of
+              the iGEM team's web design group. We are responsible for creating
+              and maintaining the team's website. I am a member of the iGEM
+              team's web design group. We are responsible for creating and
+              maintaining the team's website. I am a member of the iGEM team's
+              web design group. We are responsible for creating and mai
+            </p>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footcontainer">
+        <div class="sec about-us">
+          <h2>About Us!</h2>
+          <p>
+            I am a member of the iGEM team's web design group. We are
+            responsible for creating and maintaining the team's website.
+          </p>
+          <ul class="sci">
+            <li>
+              <a href="#">
+                <i class="fa fa-qq" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa fa-github" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa fa-weixin" aria-hidden="true"></i>
+              </a>
+            </li>
+            <li>
+              <a href="">
+                <i class="fa fa-weibo" aria-hidden="true"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="sec quick-link">
+          <h2>Quick Links!</h2>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Team</a></li>
+            <li><a href="#">Project</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="sec contact">
+          <h2>Contact Us!</h2>
+          <ul class="info">
+            <li>
+              <span> <i class="fa fa-map-marker" aria-hidden="true"></i></span>
+              <span>
+                <a href="">AAAAAA</a>
+                <br /><br />
+                <a href="">AAABBBCCC</a>
+              </span>
+            </li>
+            <li>
+              <span> <i class="fa fa-phone" aria-hidden="true"></i></span>
+              <span>
+                <a href="">(+86)123456789</a>
+              </span>
+            </li>
+            <li>
+              <span> <i class="fa fa-envelope" aria-hidden="true"></i></span>
+              <span>
+                <a href="">123456789igem@gmail.com</a>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <div class="copyrighttext" style="width: 100%; z-index: 1">
+      <p>copyright 2020 online ...</p>
+    </div>
+  <script src="js/script.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $(".dropdown").hover(
+        function () {
+          $(this).find(".dropdown-content").removeClass("hidden");
+        },
+        function () {
+          $(this).find(".dropdown-content").addClass("hidden");
+        }
+      );
+    });
+  </script>
+    <!-- JavaScript for Scrollspy -->
+    <script>
+      window.addEventListener("scroll", () => {
+        let sections = document.querySelectorAll("section");
+        let navLinks = document.querySelectorAll(".sidebar-link");
+
+        sections.forEach((section) => {
+          let top = window.scrollY;
+          let offset = section.offsetTop;
+          let height = section.offsetHeight;
+          let id = section.getAttribute("id");
+
+          if (top >= offset && top < offset + height) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active-sidebar-link");
+              if (link.getAttribute("href").endsWith("#" + id)) {
+                link.classList.add("active-sidebar-link");
+              }
+            });
+          }
+        });
+      });
+    </script>
+
+    <script>
+      window.addEventListener("scroll", () => {
+        let sections = document.querySelectorAll("section");
+        let navLinks = document.querySelectorAll(".sidebar-link");
+
+        sections.forEach((section) => {
+          let top = window.scrollY;
+          let offset = section.offsetTop - 150;
+          let height = section.offsetHeight;
+          let id = section.getAttribute("id");
+
+          if (top >= offset && top < offset + height) {
+            navLinks.forEach((link) => {
+              link.classList.remove("active-sidebar-link");
+              if (link.getAttribute("href").includes(id)) {
+                link.classList.add("active-sidebar-link");
+              }
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
